@@ -1,0 +1,19 @@
+{
+  "name": "react-project-graph",
+  "version": "0.0.1",
+  "description": "Creates a VisJS map of react components to visualize dependencies and duplicated",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cavhoo/react-project-graph.git"
+  },
+  "author": "Hendrik Mueller-Roehr",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cavhoo/react-project-graph/issues"
+  },
+  "homepage": "https://github.com/cavhoo/react-project-graph#readme"
+}
