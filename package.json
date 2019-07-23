@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/cavhoo/react-project-graph/issues"
   },
-  "homepage": "https://github.com/cavhoo/react-project-graph#readme"
+  "homepage": "https://github.com/cavhoo/react-project-graph#readme",
+  "dependencies": {
+    "commander": "^2.20.0",
+    "express": "4.17.1",
+    "vis-network": "5.0.0"
+  }
 }
