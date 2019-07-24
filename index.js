@@ -119,22 +119,32 @@ const main = () => {
     //console.log(program.path);
     const filehashmap = [];
     const folderMap = [];
+    const fileMap = [];
     let folderList = [];
     try {
         const folders = fs.readdirSync(program.path);                
         const folderlistlength = folders.length;
         for (let i = 0; i < folderlistlength; i++) {
-            folderMap.push(
-                new ComponentFolder(program.path + '/' + folders[i])
-            )
+            if (fs.statSync(program.path + "/" + folders[i]).isDirectory()) {
+                folderMap.push(
+                    new ComponentFolder(program.path + '/' + folders[i])
+                );
+            } else {
+                fileMap.push(
+                    new ComponentFile(program.path + '/' + folders[i])
+                );
+            }
         }
 
         let dotstring = '';
         for (let i = 0; i < folderMap.length; i++) {
             dotstring += folderMap[i].getDot();
         }
+        for (let i = 0, l = fileMap.length; i < l; i++) {
+            dotstring += fileMap[i].getDot();
+        }
         dotstring = dotstring.replace(/,/g,'');
-        fs.writeFileSync('dotstring.txt', dotstring);
+        fs.writeFileSync('dotstring.txt', `dninetwork {${dotstring}}`);
     } catch (e) {
         console.error(e);
     }
