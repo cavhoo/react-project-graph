@@ -4,6 +4,7 @@
   "description": "Creates a VisJS map of react components to visualize dependencies and duplicated",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,6 +20,8 @@
   "dependencies": {
     "commander": "^2.20.0",
     "express": "4.17.1",
+    "line-reader": "^0.4.0",
+    "vis": "^4.21.0",
     "vis-network": "5.0.0"
   }
 }
