@@ -1,5 +1,5 @@
 {
-  "name": "@pixelphy/react-project-graph",
+  "name": "react-project-graph",
   "version": "0.0.1",
   "description": "Creates a VisJS map of react components to visualize component and file dependencies",
   "main": "index.js",
@@ -11,7 +11,10 @@
     "type": "git",
     "url": "git+https://github.com/cavhoo/react-project-graph.git"
   },
-  "author": "Hendrik Müller-Röhr",
+  "author": {
+    "name": "Hendrik Mueller-Roehr",
+    "email": "pixelphygaming@gmail.com"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/cavhoo/react-project-graph/issues"
