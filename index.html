@@ -8,14 +8,15 @@
     <title>Document</title>
     <style type="text/css">
         #mynetwork {
-            width: 100vw;
-            height: 100vh;
+            width: 300vw;
+            height: 300vh;
             border: 1px solid lightgray;
         }
     </style>
 </head>
 <body>
-    <div id="mynetwork"></div>
+  <div id="mynetwork"></div>
+  <img id="canvasImg" alt="Right click to save me!">
     <script src="./node_modules/vis/dist/vis.js"></script>
     <script>
         var container = document.querySelector('#mynetwork');        
@@ -33,7 +34,7 @@
             var options = parsedData.options;
             // you can extend the options like a normal JSON variable:
             options.nodes = {
-                color: 'red'
+                color: '#0084F8'
             }
 
             options.layout = {
@@ -44,7 +45,11 @@
                 solver: "forceAtlas2Based"
             }
 
-            var network = new vis.Network(container, data, options);
+          var network = new vis.Network(container, data, options);
+          network.on("afterDrawing", function (ctx) {
+            var dataURL = ctx.canvas.toDataURL();
+            document.getElementById('canvasImg').src = dataURL;
+          });
         });    
     </script>
 </body>
