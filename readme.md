@@ -20,4 +20,13 @@ A few ideas I have at the moment is adding support to detect:
 3. Nodes that are imported more than 5 times should be blue
 4. Nodes that have more than 10 imports should be green
 5. Mark nodes pink that have mismatching exports/filesnames
-
+## How to use
+```
+	node index.js -p <path to src in your react app>
+```
+The dot string will the written to dotstring.txt
+There is an index.html that has visjs-network setup to load
+the dotstring by default.
+I use it with 
+```
+	python -m SimpleHTTPServer
