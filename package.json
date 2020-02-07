@@ -1,7 +1,7 @@
 {
   "name": "@pixelphy/react-project-graph",
   "version": "0.0.1",
-  "description": "Creates a VisJS map of react components to visualize dependencies and duplicated",
+  "description": "Creates a VisJS map of react components to visualize component and file dependencies",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -18,10 +18,10 @@
   },
   "homepage": "https://github.com/cavhoo/react-project-graph#readme",
   "dependencies": {
-    "commander": "^2.20.0",
+    "commander": "2.20.0",
     "express": "4.17.1",
-    "line-reader": "^0.4.0",
-    "vis": "^4.21.0",
+    "line-reader": "0.4.0",
+    "vis": "4.21.0",
     "vis-network": "5.0.0"
   },
   "devDependencies": {},
