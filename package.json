@@ -1,6 +1,6 @@
 {
   "name": "react-project-graph",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Creates a VisJS map of react components to visualize component and file dependencies",
   "main": "index.js",
   "scripts": {
