@@ -1,7 +1,7 @@
 {
   "name": "react-project-graph",
-  "version": "0.0.1",
-  "description": "Creates a VisJS map of react components to visualize dependencies and duplicated",
+  "version": "1.0.0",
+  "description": "Creates a VisJS map of react components to visualize component and file dependencies",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -11,17 +11,25 @@
     "type": "git",
     "url": "git+https://github.com/cavhoo/react-project-graph.git"
   },
-  "author": "Hendrik Mueller-Roehr",
+  "author": {
+    "name": "Hendrik Mueller-Roehr",
+    "email": "pixelphygaming@gmail.com"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/cavhoo/react-project-graph/issues"
   },
   "homepage": "https://github.com/cavhoo/react-project-graph#readme",
   "dependencies": {
-    "commander": "^2.20.0",
+    "commander": "2.20.0",
     "express": "4.17.1",
-    "line-reader": "^0.4.0",
-    "vis": "^4.21.0",
+    "line-reader": "0.4.0",
     "vis-network": "5.0.0"
-  }
+  },
+  "devDependencies": {},
+  "keywords": [
+    "React",
+    "DOTMap",
+    "Depedencies"
+  ]
 }
