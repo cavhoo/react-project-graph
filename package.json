@@ -1,5 +1,5 @@
 {
-  "name": "react-project-graph",
+  "name": "@pixelphy/react-project-graph",
   "version": "0.0.1",
   "description": "Creates a VisJS map of react components to visualize dependencies and duplicated",
   "main": "index.js",
@@ -23,5 +23,11 @@
     "line-reader": "^0.4.0",
     "vis": "^4.21.0",
     "vis-network": "5.0.0"
-  }
+  },
+  "devDependencies": {},
+  "keywords": [
+    "React",
+    "DOTMap",
+    "Depedencies"
+  ]
 }
