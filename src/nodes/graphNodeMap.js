@@ -1,4 +1,4 @@
-export class NodeMap {
+class GraphNodeMap {
     constructor() {
         /**
          * @type {number}
@@ -29,13 +29,13 @@ export class NodeMap {
 
     /**
      * Returns true if the Node already exists inside the map
-     * @param {GraphNode} node
+     * @param {string} nodeName
      */
-    exists(node) {
+    exists(nodeName) {
         let found = false;
         for (let i = 0; i < this.map.length; i++) {
             const n = this.map[i];
-            if (n.nodename === node.nodename) found = true;
+            if (n.nodename === nodeName) found = true;
         }
         return found;
     }
@@ -109,3 +109,5 @@ export class NodeMap {
         }
     }
 }
+
+module.exports.GraphNodeMap = GraphNodeMap;

@@ -22,6 +22,7 @@
   "homepage": "https://github.com/cavhoo/react-project-graph#readme",
   "dependencies": {
     "commander": "2.20.0",
+    "d3-graphviz": "^2.6.1",
     "express": "4.17.1",
     "line-reader": "0.4.0",
     "vis-network": "5.0.0"

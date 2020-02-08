@@ -3,15 +3,25 @@ const importRegEx = new RegExp(/(?:import[\s*as{}]+)(?=\b)([A-z,]+)/);
 const importPathRegEx = new RegExp(/((?:from[\s'"]+)|(?:require[\('"]+))([\.A-z/@]+)/);
 const classRegExp = new RegExp(/(?:class[\s]+)([A-z]+)/, 'g');
 
-const exportRegEx = new RegExp(/(?:export)/);
+const exportRegEx = new RegExp(/(?:export[\sclass|const|interface|default]+)([A-z0-9_]+)/);
 /**
  * @param {string} fileContents
  * @returns {string[]}
  */
-export const importParser = (fileContents) => {
+const importParser = (fileContents) => {
     const lines =  fileContents.split(/\r|\n/g);
-    
-    return lines.map( line => importRegEx(line));
+    const imports = [];
+    for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        if (line.indexOf('import') < 0) continue;
+        
+        const matches = importRegEx.exec(line);
+        
+        if (matches && matches.length > 1) {
+            imports.push(matches[1]);
+        }
+    }
+    return imports;
 };
 
 /**
@@ -19,6 +29,22 @@ export const importParser = (fileContents) => {
  * @param {string} fileContents
  * @returns {string[]}
  */
-export const exportParser = (fileContents) => {
-    return exportRegEx.exec(fileContents);
+const exportParser = (fileContents) => {
+    const lines =  fileContents.split(/\r|\n/g);
+    const exportmap = [];
+    for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        if (line.indexOf('export') < 0) continue;
+
+        const matches = exportRegEx.exec(line);
+
+        if (matches && matches.length > 1) {
+            exportmap.push(matches[1]);
+        }
+    }
+    return exportmap;
 };
+
+
+exports.importParser = importParser;
+exports.exportParser = exportParser;

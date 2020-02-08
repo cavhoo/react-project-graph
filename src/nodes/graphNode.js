@@ -1,4 +1,4 @@
-export class GraphNode {
+class GraphNode {
     /**
      * @param {string} nodename
      */
@@ -9,14 +9,14 @@ export class GraphNode {
 
     /**
      * 
-     * @param {string} nodename
+     * @param {string} nodes
      */
     addImportedBy(...nodes) {
         nodes.forEach( node => {
             if (this.importedBy.indexOf(node) < 0) {
                 this.importedBy.push(node);
             }
-        })
+        });
     }
 
     
@@ -31,8 +31,16 @@ export class GraphNode {
     }
     
     getDotString() {
-        return `${this.nodename}<-{${this.importedBy.join(',')}}`;
+        let dotstring = '';
+
+        this.importedBy.forEach( imp => {
+           const str = `${imp}->${this.nodename};`;
+           dotstring += str;
+        });
+        return dotstring;
         
-        //return this.importedBy.reduce( (acc, nodename, idx) => acc += `${nodename}->${this.nodename};`, "");
+        //return `{${this.importedBy.join(' ')}} -> ${this.nodename};`;
     }
 }
+
+module.exports.GraphNode = GraphNode;
