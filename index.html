@@ -20,7 +20,7 @@
     <script>
         var container = document.querySelector('#mynetwork');        
         var getDotfile = async () => {
-            const filecontent = await fetch('./dotstring.txt');
+            const filecontent = await fetch('./widgetmap.txt');
             return filecontent.text();
         }
         getDotfile().then( dotstring => {

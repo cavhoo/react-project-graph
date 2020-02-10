@@ -21,7 +21,7 @@ const parseContent = (path) => {
           parseContent(`${path}/${content}`);
       } else {
           if (/(js|ts)/.test(content)) {
-              console.log("Parsing: ", content);
+              console.log("Parsing: ", `${path}/${content}`);
               const fileContent = fs.readFileSync(`${path}/${content}`).toString();
               const imps = importParser(fileContent);
               const exports = exportParser(fileContent);
@@ -60,7 +60,7 @@ const main = () => {
         
         dotstring = dotstring.replace(/,/g,'');
         
-        const outFile = program.out;
+        const outFile = process.cwd() + '/' + program.out;  
         
         fs.writeFileSync(outFile, `dinetwork {${dotstring}}`);
     } catch (e) {
