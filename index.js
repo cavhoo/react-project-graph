@@ -1,7 +1,5 @@
 
 const fs = require('fs');
-const path = require('path');
-const readline = require('readline');
 const program = require('commander');
 
 const { importParser, exportParser } = require('./src/fileparser/parser');
@@ -10,8 +8,6 @@ const {GraphNode} = require('./src/nodes/graphNode');
 
 const mappedNodes =  new GraphNodeMap();
 
-
-let dotstring = '';
 const parseContent = (path) => {
   const dirContent = fs.readdirSync(path);
   
@@ -20,7 +16,7 @@ const parseContent = (path) => {
       if (isDir) {
           parseContent(`${path}/${content}`);
       } else {
-          if (/(js|ts)/.test(content)) {
+          if (!/(index|test|d)\./.test(content) && /\.(js|ts)/.test(content) ) {
               console.log("Parsing: ", `${path}/${content}`);
               const fileContent = fs.readFileSync(`${path}/${content}`).toString();
               const imps = importParser(fileContent);
@@ -29,11 +25,11 @@ const parseContent = (path) => {
               imps.forEach( imp => {
                  if (!mappedNodes.exists(imp)) {
                      const node = new GraphNode(imp);
-                     node.addImportedBy(...exports);
+                     node.addImportedBy(...[content.split('.ts')[0]]);
                      mappedNodes.addNode(node);
                  } else {
                      const node = mappedNodes.getNodeByName(imp);
-                     node.addImportedBy(...exports);
+                     node.addImportedBy(...[content.split('.ts')[0]]);
                  }
               });
           }
@@ -49,6 +45,7 @@ program
     .option('-v --verbose', 'Verbose option for extra loggin sugarz')
 
 const main = () => {
+    let dotstring = '';
     program.parse(process.argv);
     try {
         parseContent(program.path);
@@ -61,7 +58,7 @@ const main = () => {
         dotstring = dotstring.replace(/,/g,'');
         
         const outFile = process.cwd() + '/' + program.out;  
-        
+        console.log("Writing DOT String => ", outFile);
         fs.writeFileSync(outFile, `dinetwork {${dotstring}}`);
     } catch (e) {
         console.error(e);

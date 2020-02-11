@@ -1,6 +1,6 @@
 
 const importRegEx = new RegExp(/(?:import[\s*as{}]+)(?=\b)([A-z,]+)/);
-const importPathRegEx = new RegExp(/((?:from[\s'"]+)|(?:require[\('"]+))([\.A-z/@]+)/);
+const importPathRegEx = new RegExp(/([A-z\-\.]+)(?:['";\n\r]+)$/);//new RegExp(/(?:(?:(?:[\s'"\.\/@A-z]*)\/)|(?:(from[\s'"\./@]+)))([\.A-z@/]+)/);
 const classRegExp = new RegExp(/(?:class[\s]+)([A-z]+)/, 'g');
 
 const exportRegEx = new RegExp(/(?:export[\sclass|const|interface|default]+)([A-z0-9_]+)/);
@@ -13,12 +13,13 @@ const importParser = (fileContents) => {
     const imports = [];
     for (let i = 0; i < lines.length; i++) {
         const line = lines[i];
-        if (line.indexOf('import') < 0) continue;
+        if (!/from|require/.test(line)) continue;
         
-        const matches = importRegEx.exec(line);
+        const matches = importPathRegEx.exec(line);
         
         if (matches && matches.length > 1) {
-            imports.push(matches[1]);
+            const underscored = matches[1].replace(/-/g, '_');
+            imports.push(underscored);
         }
     }
     return imports;
