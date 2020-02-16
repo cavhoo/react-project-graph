@@ -1,27 +1,16 @@
+const { traverseFileContent } = require('./traverse');
 
-const importRegEx = new RegExp(/(?:import[\s*as{}]+)(?=\b)([A-z,]+)/);
-const importPathRegEx = new RegExp(/([A-z\-\.]+)(?:['";\n\r]+)$/);//new RegExp(/(?:(?:(?:[\s'"\.\/@A-z]*)\/)|(?:(from[\s'"\./@]+)))([\.A-z@/]+)/);
-const classRegExp = new RegExp(/(?:class[\s]+)([A-z]+)/, 'g');
-
+const importPathRegEx = new RegExp(/([A-z\-\.]+)(?:['";\n\r]+)$/);
 const exportRegEx = new RegExp(/(?:export[\sclass|const|interface|default]+)([A-z0-9_]+)/);
 /**
+ * @method importParser
  * @param {string} fileContents
- * @returns {string[]}
+ * @returns {ImportRef[]}
  */
 const importParser = (fileContents) => {
     const lines =  fileContents.split(/\r|\n/g);
     const imports = [];
-    for (let i = 0; i < lines.length; i++) {
-        const line = lines[i];
-        if (!/from|require/.test(line)) continue;
-        
-        const matches = importPathRegEx.exec(line);
-        
-        if (matches && matches.length > 1) {
-            const underscored = matches[1].replace(/-/g, '_');
-            imports.push(underscored);
-        }
-    }
+    traverseFileContent(fileContents, imports);
     return imports;
 };
 
@@ -36,7 +25,6 @@ const exportParser = (fileContents) => {
     for (let i = 0; i < lines.length; i++) {
         const line = lines[i];
         if (line.indexOf('export') < 0) continue;
-
         const matches = exportRegEx.exec(line);
 
         if (matches && matches.length > 1) {
@@ -45,7 +33,6 @@ const exportParser = (fileContents) => {
     }
     return exportmap;
 };
-
 
 exports.importParser = importParser;
 exports.exportParser = exportParser;
