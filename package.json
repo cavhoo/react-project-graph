@@ -1,6 +1,6 @@
 {
-  "name": "@pixelphy/react-project-graph",
-  "version": "0.0.1",
+  "name": "react-project-graph",
+  "version": "1.0.0",
   "description": "Creates a VisJS map of react components to visualize component and file dependencies",
   "main": "index.js",
   "scripts": {
@@ -11,16 +11,24 @@
     "type": "git",
     "url": "git+https://github.com/cavhoo/react-project-graph.git"
   },
-  "author": "Hendrik Müller-Röhr",
+  "author": {
+    "name": "Hendrik Mueller-Roehr",
+    "email": "pixelphygaming@gmail.com"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/cavhoo/react-project-graph/issues"
   },
   "homepage": "https://github.com/cavhoo/react-project-graph#readme",
   "dependencies": {
+    "@typescript-eslint/parser": "2.19.2",
+    "@typescript-eslint/typescript-estree": "2.19.2",
     "commander": "2.20.0",
+    "d3-graphviz": "2.6.1",
+    "eslint": "6.8.0",
     "express": "4.17.1",
     "line-reader": "0.4.0",
+    "typescript": "^3.7.5",
     "vis-network": "5.0.0"
   },
   "devDependencies": {},

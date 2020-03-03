@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>Document</title>
+    <style type="text/css">
+        #mynetwork {
+            width: 1280px;
+            height: 720px;
+            border: 1px solid lightgray;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div id="mynetwork"></div>
+</div>
+<script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js" type="text/javascript"></script>
+<script>
+    var container = document.querySelector('#mynetwork');
+    var getDotfile = async () => {
+        const filecontent = await fetch('./teststring.txt');
+        return filecontent.text();
+    }
+    getDotfile().then(dotstring => {
+        var parsedData = vis.parseDOTNetwork(dotstring);
+        var data = {
+            nodes: parsedData.nodes,
+            edges: parsedData.edges
+        };
+
+        var options = parsedData.options;
+        options.autoResize = true;
+        // you can extend the options like a normal JSON variable:
+        options.nodes = {
+            color: '#0084F8'
+        };
+
+        options.layout = {
+            improvedLayout: false
+        };
+
+        options.physics = {
+            solver: 'barnesHut',
+            barnesHut: {
+                gravitationalConstant: -200,
+                centralGravity: 0,
+                springLength: 1000,
+                springConstant: 1,
+                damping: 1,
+                avoidOverlap: 1
+            }
+        };
+
+        const network = new vis.Network(container, data, options);
+    });
+</script>
+</body>
+</html>
